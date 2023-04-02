@@ -1,46 +1,15 @@
 <template>
     <div id="app">
-        <div>
-            <el-row>
-                <el-button>默认按钮</el-button>
-                <el-button type="primary">主要按钮</el-button>
-                <el-button type="success" @click="btnClick()">成功按钮</el-button>
-                <el-button type="info">信息按钮</el-button>
-                <el-button type="warning">警告按钮</el-button>
-                <el-button type="danger">危险按钮</el-button>
-            </el-row>
-        </div>
-        <div style="width: 500px; height: 500px;">
-            <tableComp/>
-        </div>
-        <el-switch
-            v-model="value2"
-            active-color="#13ce66"
-            inactive-color="#ff4949">
-        </el-switch>
+        <Container/>
     </div>
 </template>
 
 <script>
-import tableComp from "@/components/tableComp.vue";
+import Container from "@/components/Container/Container";
 export default {
     name: 'App',
     components: {
-        tableComp
-    },
-    data() {
-        return {
-            value1: true,
-            value2: true
-        }
-    },
-    methods: {
-        btnClick() {
-            this.$message({
-                message: '恭喜你，这是一条成功消息',
-                type: 'success'
-            });
-        }
+        Container
     }
 }
 </script>
@@ -53,5 +22,11 @@ export default {
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+    height: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
 }
 </style>

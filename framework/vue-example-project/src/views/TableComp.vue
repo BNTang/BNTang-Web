@@ -21,7 +21,7 @@
 
 <script>
 export default {
-    name: "tableComp",
+    name: "TableComp",
     data() {
         return {
             tableData: [{
