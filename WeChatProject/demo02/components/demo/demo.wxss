@@ -1,0 +1,5 @@
+/* components/demo/demo.wxss */
+.cDemo {
+  font-size: 20px;
+  color: red;
+}

@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "myDemo": "/components/demo/demo"
+  },
+  "navigationBarTitleText": "日志页面"
 }

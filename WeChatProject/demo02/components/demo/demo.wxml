@@ -1,0 +1,4 @@
+<!--components/demo/demo.wxml-->
+<text class="cDemo">自定义组件</text>
+<text>{{ name }}</text>
+<myTest/>
