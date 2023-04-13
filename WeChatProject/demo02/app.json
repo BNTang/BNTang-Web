@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/log/log",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/log/log"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

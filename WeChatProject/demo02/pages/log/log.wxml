@@ -1,4 +1,2 @@
 <!--pages/log/log.wxml-->
-<text class="title">pages/log/log.wxml</text>
-<text>{{ name }}</text>
-<myDemo/>
+<text class="title"></text>

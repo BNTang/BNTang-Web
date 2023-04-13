@@ -1,2 +1,8 @@
-<!--pages/index/index.wxml-->
-<text class="title">BNTang</text>
+<view class="test" id="demo">
+  <block wx:if="{{person.score===100}}">
+    <view>{{person.name}}</view>
+    <view>{{person.age}}</view>
+    <view>{{person.gender}}</view>
+    <view>{{person.score}}</view>
+  </block>
+</view>
