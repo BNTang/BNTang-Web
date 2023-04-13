@@ -4,6 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    count: 1000,
     objectArray: [
       {id: 5, unique: 'unique_5'},
       {id: 4, unique: 'unique_4'},

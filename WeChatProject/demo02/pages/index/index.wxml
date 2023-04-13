@@ -1,8 +1,11 @@
-<view class="test" id="demo">
-  <block wx:if="{{person.score===100}}">
-    <view>{{person.name}}</view>
-    <view>{{person.age}}</view>
-    <view>{{person.gender}}</view>
-    <view>{{person.score}}</view>
-  </block>
+<view>
+  {{ tool.formartData(count) }}
 </view>
+
+<wxs module="tool">
+function formartData (count) {
+  return count >= 1000 ? count / 1000 + 'k' : count;
+}
+
+module.exports.formartData = formartData;
+</wxs>
