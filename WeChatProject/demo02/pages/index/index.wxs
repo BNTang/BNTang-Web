@@ -1,0 +1,5 @@
+function formartData (count) {
+  return count >= 1000 ? count / 1000 + 'k' : count;
+}
+
+module.exports.formartData = formartData;

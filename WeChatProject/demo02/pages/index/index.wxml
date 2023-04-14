@@ -1,11 +1,5 @@
+<wxs src='./index.wxs' module="tool"/>
+
 <view>
   {{ tool.formartData(count) }}
 </view>
-
-<wxs module="tool">
-function formartData (count) {
-  return count >= 1000 ? count / 1000 + 'k' : count;
-}
-
-module.exports.formartData = formartData;
-</wxs>
