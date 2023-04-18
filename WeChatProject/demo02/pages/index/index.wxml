@@ -1,5 +1,1 @@
-<wxs src='./index.wxs' module="tool"/>
-
-<view>
-  {{ tool.formartData(count) }}
-</view>
+<view mark:name="BNTang" bind:tap="oneTap">我是view</view>

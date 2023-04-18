@@ -3,37 +3,29 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {
-    count: 1000,
-    objectArray: [
-      {id: 5, unique: 'unique_5'},
-      {id: 4, unique: 'unique_4'},
-      {id: 3, unique: 'unique_3'},
-      {id: 2, unique: 'unique_2'},
-      {id: 1, unique: 'unique_1'},
-      {id: 0, unique: 'unique_0'},
-    ],
-    chs: ['a', 'b', 'c'],
-    person: {
-      name: 'BNTang',
-      age: 21,
-      gender: 'male',
-      score: 100
-    }
+  data: {},
+  onOneClick: function() {
+    console.log('捕获:onOneClick');
   },
-  _myClickHandle: function(){
-    console.log("加之前：" + this.data.chs)
-    this.data.chs.unshift('d');
-    this.setData(this.data);
-    console.log("加之后：" + this.data.chs)
+  onTwoClick: function() {
+    console.log('捕获:onTwoClick');
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onThreeClick: function() {
+    console.log('捕获:onThreeClick');
   },
-
+  onOneClick1: function() {
+    console.log('冒泡:onOneClick1');
+  },
+  onTwoClick1: function() {
+    console.log('冒泡:onTwoClick1');
+  },
+  onThreeClick1: function() {
+    console.log('冒泡:onThreeClick1');
+  },
+  oneTap: function(event){
+    console.log('oneTap', event);
+    console.log(event.mark.name);
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
