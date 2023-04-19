@@ -1,1 +1,3 @@
-<view mark:name="BNTang" bind:tap="oneTap">我是view</view>
+<view mark:name="BNTang" id="father" capture-bind:tap="onCaptureFatherTap" bind:tap="onFatherTap">
+  <view mark:age="18" id="son" capture-bind:tap="onCaptureSonTap" bind:tap="onSonTap"></view>
+</view>

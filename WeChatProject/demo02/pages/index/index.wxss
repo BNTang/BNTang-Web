@@ -1,18 +1,12 @@
 /* pages/index/index.wxss */
-.one {
+#father {
     width: 400px;
     height: 400px;
     background: #0099FF;
 }
 
-.two {
+#son {
     width: 320px;
     height: 320px;
     background: forestgreen;
-}
-
-.three {
-    width: 200px;
-    height: 200px;
-    background: peachpuff;
 }
