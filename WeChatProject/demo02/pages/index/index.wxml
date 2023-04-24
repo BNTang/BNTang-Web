@@ -1,3 +1,1 @@
-<view mark:name="BNTang" id="father" capture-bind:tap="onCaptureFatherTap" bind:tap="onFatherTap">
-  <view mark:age="18" id="son" capture-bind:tap="onCaptureSonTap" bind:tap="onSonTap"></view>
-</view>
+<button open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber">获取用户手机号</button>

@@ -1,21 +1,20 @@
 {
-  "description": "项目配置文件，详见文档：%s",
+  "description": "项目配置文件",
   "packOptions": {
     "ignore": [
       {
-        "value": ".eslintrc.js",
-        "type": "file"
+        "type": "file",
+        "value": ".eslintrc.js"
       }
-    ],
-    "include": []
+    ]
   },
   "setting": {
     "urlCheck": true,
     "es6": true,
     "enhance": true,
-    "postcss": false,
+    "postcss": true,
     "preloadBackgroundData": false,
-    "minified": false,
+    "minified": true,
     "newFeature": false,
     "coverView": true,
     "nodeModules": false,
@@ -26,7 +25,7 @@
     "checkInvalidKey": true,
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
-    "compileHotReLoad": false,
+    "compileHotReLoad": true,
     "lazyloadPlaceholderEnable": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
@@ -40,45 +39,44 @@
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "minifyWXSS": false,
+    "minifyWXSS": true,
     "disableUseStrict": false,
-    "minifyWXML": false,
+    "minifyWXML": true,
     "showES6CompileOption": false,
     "useCompilerPlugins": false,
-    "ignoreUploadUnusedFiles": false
+    "ignoreUploadUnusedFiles": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.17.0",
-  "appid": "wx37eabc883c4516d8",
-  "projectname": "demo02",
-  "cloudfunctionTemplateRoot": "",
-  "watchOptions": {
-    "ignore": []
-  },
+  "libVersion": "2.19.4",
+  "appid": "wx38c4836e16367ad6",
+  "projectname": "demo03",
   "debugOptions": {
     "hidedInDevtools": []
   },
   "scripts": {},
+  "staticServerOptions": {
+    "baseURL": "",
+    "servePath": ""
+  },
+  "isGameTourist": false,
   "condition": {
-    "plugin": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
       "list": []
     },
     "game": {
+      "list": []
+    },
+    "plugin": {
       "list": []
     },
     "gamePlugin": {
       "list": []
     },
     "miniprogram": {
-      "list": [
-        {
-          "name": "日志页面调试",
-          "pathName": "pages/log/log",
-          "query": "",
-          "scene": null,
-          "launchMode": "default"
-        }
-      ]
+      "list": []
     }
   }
 }

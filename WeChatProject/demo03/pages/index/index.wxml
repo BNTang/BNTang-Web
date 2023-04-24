@@ -1,0 +1,4 @@
+<image mode="widthFix" 
+       src="{{filePath}}"
+/>
+<button bindtap="onChooseImage">选择头像</button>
