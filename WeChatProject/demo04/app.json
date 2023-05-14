@@ -10,5 +10,8 @@
     "navigationBarTextStyle":"black"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "myDemo": "/components/c-demo/c-demo"
+  }
 }

@@ -1,1 +1,3 @@
-/* components/c-example/c-example.wxss */
+.container{
+  background-color: green;
+}

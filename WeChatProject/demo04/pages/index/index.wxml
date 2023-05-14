@@ -1,4 +1,6 @@
 <!-- 
-index.wxml
+  index.wxml
  -->
-<myExample container="abc"/>
+ <myTabar items="{{items}}"
+          bind:tabarItemClick="sectionItemClick"
+ />

@@ -1,0 +1,10 @@
+<!-- 
+  c-demo.wxml
+ -->
+<view>
+  <view 
+  bindtap="onTitleTap"
+  mark:abc="{{title}}"
+  >我是 demo 的 title view {{title}}</view>
+  <view>我是 demo 的 content view {{content}}</view>
+</view>

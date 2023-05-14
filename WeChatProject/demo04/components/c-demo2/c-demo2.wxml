@@ -1,0 +1,9 @@
+<!-- 
+  c-demo2.wxml
+ -->
+<button 
+bindtap="onCDemoTap"
+type="primary"
+>
+我是c-demo按钮
+</button>

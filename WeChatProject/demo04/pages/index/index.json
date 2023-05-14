@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "myExample": "/components/c-example/c-example"
+    "myExample": "/components/c-example/c-example",
+    "myDemo2": "/components/c-demo2/c-demo2",
+    "myTabar": "/components/c-tabar/c-tabar"
   }
 }
