@@ -1,0 +1,7 @@
+<!-- 
+c-example.wxml
+ -->
+<view class="container">
+  <view>我是标题</view>
+  <view>我是内容</view>
+</view>

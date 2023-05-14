@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "myExample": "/components/c-example/c-example"
+  }
+}
