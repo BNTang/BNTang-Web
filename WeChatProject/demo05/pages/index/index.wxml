@@ -1,0 +1,6 @@
+<!--index.wxml-->
+<myNav>
+  <text slot="leftSlot">我是左边</text>
+  <input slot="centerSlot" type="text"/>
+  <button slot="rightSlot">我是按钮</button>
+</myNav>

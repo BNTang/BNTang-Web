@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "myNav": "/components/c-test/c-test"
+  }
+}
