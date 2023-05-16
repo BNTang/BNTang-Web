@@ -1,0 +1,4 @@
+<!--components/c-demo/c-demo.wxml-->
+<text>{{counter}}</text>
+<button bindtap="increase">我是c-demo按钮 increase</button>
+<button bindtap="decrease">我是c-demo按钮 decrease</button>
