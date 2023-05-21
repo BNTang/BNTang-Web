@@ -1,0 +1,5 @@
+<!--index.wxml-->
+<button bindtap="onShowToast">showToast</button>
+<button bindtap="onShowLoading">showLoading</button>
+<button bindtap="onShowModal">showModal</button>
+<button bindtap="onShowActionSheet">showActionSheet</button>

@@ -1,0 +1,2 @@
+<!--index.wxml-->
+<button bindtap="getUserLocation">获取用户位置</button>

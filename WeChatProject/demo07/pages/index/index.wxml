@@ -1,0 +1,3 @@
+<!--index.wxml-->
+<text>首页</text>
+<navigator url="/pages/logs/logs">跳转到Log页面</navigator>
