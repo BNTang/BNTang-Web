@@ -9,6 +9,7 @@ import {
     Main,
     Header,
     Aside,
+    Slider
     // 其他需要引入的组件
 } from 'element-ui';
 
@@ -24,6 +25,7 @@ export default {
         Vue.use(Main);
         Vue.use(Header);
         Vue.use(Aside);
+        Vue.use(Slider);
         // 全局注册message
         Vue.prototype.$message = Message;
         // 其他需要使用的组件

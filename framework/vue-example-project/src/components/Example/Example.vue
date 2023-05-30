@@ -11,7 +11,7 @@
             </el-row>
         </div>
         <div style="width: 500px; height: 500px;">
-            <tableComp/>
+          <TableComp/>
         </div>
         <el-switch
                 v-model="value2"
@@ -22,8 +22,12 @@
 </template>
 
 <script>
+import TableComp from "@/views/TableComp";
+
 export default {
-    name: "Example",
+  // eslint-disable-next-line vue/multi-word-component-names
+  name: "Example",
+  components: {TableComp},
     data() {
         return {
             value1: true,
