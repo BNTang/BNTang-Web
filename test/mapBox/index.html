@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Mapbox PBF 文件加载示例</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css" rel="stylesheet" />
+    <style>
+        body { margin: 0; padding: 0; }
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+
+<script>
+    // 使用您的 Mapbox Access Token 替换下面的 'YOUR_MAPBOX_ACCESS_TOKEN'
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYm50YW5nIiwiYSI6ImNsaXR2ZnFxaDJhMjYzcG52ZGIzcHdldDYifQ.rL9nttXLtDaomq54_gkNWg';
+
+    // 初始化地图
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [119.13697, 33.7843], // 指定经纬度
+        zoom: 15 // 缩放级别
+    });
+
+    map.on('load', function() {
+        map.addSource('qeoten',{
+            'type':'vector',
+            'scheme':'tms',
+            'tiles':['http://localhost:8080/geoserver/gwc/service/tms/1.0.0/qeoten@EPSG%3A900913@pbf/{z}/{x}/{y}.pbf']
+        });
+
+        map.addLayer({
+            'id': '3d-buildings',
+            'source': 'qeoten',
+            'source-layer':'bigBuildings',
+            'type': 'fill-extrusion'
+        });
+
+
+        // // 检查源是否已存在
+        // if (!map.getSource('wms-source')) {
+        //     map.addSource('wms-source', {
+        //         'type': 'raster',
+        //         'tiles': [
+        //             'http://localhost:8080/geoserver/wms?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&FORMAT=image%2Fpng&TRANSPARENT=true&STYLES&LAYERS=qeoten&exceptions=application%2Fvnd.ogc.se_inimage&SRS=EPSG%3A404000&WIDTH=768&HEIGHT=330&BBOX=-611.71875%2C1133.4375%2C468.28125%2C1597.5',
+        //         ],
+        //         'tileSize': 256,
+        //         'minzoom': 0,
+        //         'maxzoom': 22,
+        //     });
+        // }
+        //
+        // // 检查图层是否已存在
+        // if (!map.getLayer('wms-layer')) {
+        //     map.addLayer({
+        //             'id': 'wms-layer',
+        //             'type': 'raster',
+        //             'source': 'wms-source',
+        //             'paint': {
+        //                 'raster-opacity': 0.3
+        //             }
+        //         },
+        //         'aeroway-line');
+        // }
+    });
+
+</script>
+</body>
+</html>
