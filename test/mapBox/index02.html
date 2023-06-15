@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mapbox + GeoServer TMS + PBF Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<div id="map"></div>
+
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiYm50YW5nIiwiYSI6ImNsaXR2ZnFxaDJhMjYzcG52ZGIzcHdldDYifQ.rL9nttXLtDaomq54_gkNWg';
+
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11', // 使用默认地图样式，可以根据需要自行修改
+    center: [119.1308, 33.7863], // 设置地图中心经纬度
+    zoom: 15 // 设置地图缩放级别
+  });
+  // 添加 GeoServer TMS 图层
+  map.on('load', function () {
+    map.addSource('qeoten', {
+      type: 'raster',
+      tiles: [
+        'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/qeoten@EPSG%3A4326@pbf/{z}/{x}/{y}.pbf'
+      ],
+      tileSize: 256
+    });
+    map.addLayer({
+      id: '11',
+      type: 'raster',
+      source: 'qeoten',
+      minzoom: 0,
+      maxzoom: 22
+    });
+  });
+</script>
+</body>
+</html>

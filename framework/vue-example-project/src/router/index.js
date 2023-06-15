@@ -6,6 +6,7 @@ import ExampleComponent from "@/example/字符串模板/渲染ElementComponent-�
 
 // import the ExampleComponent
 import MapExampleComponent from "@/example/地图/MapBox嵌入GeoServer地图/ExampleComponent";
+import MapExampleComponentCad from "@/example/地图/MapBox嵌入CAD/ExampleComponent";
 // import the Example
 import Example from "../components/Example/Example";
 
@@ -44,6 +45,11 @@ const routes = [
         path: '/container',
         name: 'container',
         component: Container
+    },
+    {
+        path: '/mapExampleComponentCad',
+        name: 'mapExampleComponentCad',
+        component: MapExampleComponentCad
     }
 ]
 

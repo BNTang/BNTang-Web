@@ -8,6 +8,10 @@
       <router-link to="/exampleComponent">跳转到ExampleComponent</router-link>
       <router-link to="/example">跳转到Example</router-link>
       <router-link to="/mapBoxExample">跳转到MapBox Example</router-link>
+      <div>
+        ---------
+      </div>
+      <router-link to="/mapExampleComponentCad">跳转到mapExampleComponentCad</router-link>
     </el-container>
 </template>
 
