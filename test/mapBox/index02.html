@@ -33,21 +33,23 @@
     zoom: 15 // 设置地图缩放级别
   });
   // 添加 GeoServer TMS 图层
-  map.on('load', function () {
-    map.addSource('qeoten', {
-      type: 'raster',
-      tiles: [
-        'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/qeoten@EPSG%3A4326@pbf/{z}/{x}/{y}.pbf'
-      ],
-      tileSize: 256
-    });
+  map.on('load', () => {
     map.addLayer({
-      id: '11',
-      type: 'raster',
-      source: 'qeoten',
-      minzoom: 0,
-      maxzoom: 22
-    });
+      'id': '11',
+      'type': 'fill',
+      'source': {
+        'type': 'vector',
+        // TMS 调用需要加上这行
+        'scheme': 'tms',
+        'tiles': ['http://localhost:8080/geoserver/gwc/service/tms/1.0.0/exampleTwo%3A630000_full@EPSG%3A900913@pbf/{z}/{x}/{y}.pbf']
+      },
+      // source-layer 是你 Geoserver 图层的名称即 上面 URL 的 title
+      'source-layer': '630000_full',
+      'paint': {
+        'fill-color': '#78d59a',
+        'fill-opacity': 0.8
+      }
+    })
   });
 </script>
 </body>
