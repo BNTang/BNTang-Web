@@ -4,6 +4,8 @@ import VueRouter from 'vue-router';
 // import the ExampleComponent
 import ExampleComponent from "@/example/字符串模板/渲染ElementComponent-失败/ExampleComponent";
 
+import ExampleMapBox from "@/example/MapBox/Example";
+
 // import the ExampleComponent
 import MapExampleComponent from "@/example/地图/MapBox嵌入GeoServer地图/ExampleComponent";
 import MapExampleComponentCad from "@/example/地图/MapBox嵌入CAD/ExampleComponent";
@@ -50,6 +52,11 @@ const routes = [
         path: '/mapExampleComponentCad',
         name: 'mapExampleComponentCad',
         component: MapExampleComponentCad
+    },
+    {
+        path: '/exampleMapBox',
+        name: 'ExampleMapBox',
+        component: ExampleMapBox
     }
 ]
 

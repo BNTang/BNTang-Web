@@ -12,6 +12,7 @@
         ---------
       </div>
       <router-link to="/mapExampleComponentCad">跳转到mapExampleComponentCad</router-link>
+      <router-link to="/exampleMapBox">跳转到exampleMapBox</router-link>
     </el-container>
 </template>
 
