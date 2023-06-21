@@ -25,7 +25,8 @@
 
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoiYm50YW5nIiwiYSI6ImNsaXR2ZnFxaDJhMjYzcG52ZGIzcHdldDYifQ.rL9nttXLtDaomq54_gkNWg';
-
+  // var tmsUrl = "http://localhost:8080/geoserver/gwc/service/tms/1.0.0/qqqqqq%3Aaaa@EPSG%3A900913@pbf/{z}/{x}/{y}.pbf";
+  var tmsUrl = "http://localhost:8080/geoserver/gwc/service/tms/1.0.0/example002%3Aexample@EPSG%3A900913@pbf/{z}/{x}/{y}.pbf";
   var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11', // 使用默认地图样式，可以根据需要自行修改
@@ -33,24 +34,128 @@
     zoom: 15 // 设置地图缩放级别
   });
   // 添加 GeoServer TMS 图层
-  map.on('load', () => {
+  map.on("load", function () {
     map.addLayer({
-      'id': '11',
-      'type': 'fill',
+      "id": "tms-test",
+      "type": "line",
       'source': {
+        'scheme': 'tms',//TMS服务有此一行
         'type': 'vector',
-        // TMS 调用需要加上这行
-        'scheme': 'tms',
-        'tiles': ['http://localhost:8080/geoserver/gwc/service/tms/1.0.0/exampleTwo%3A630000_full@EPSG%3A900913@pbf/{z}/{x}/{y}.pbf']
+        'tiles': [
+          tmsUrl
+        ]
       },
-      // source-layer 是你 Geoserver 图层的名称即 上面 URL 的 title
-      'source-layer': '630000_full',
-      'paint': {
-        'fill-color': '#78d59a',
-        'fill-opacity': 0.8
+      // "source-layer": "aaa",
+      "source-layer": "example",
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "rgb(14,8,8)",
+        "line-width": 1,
+        "line-opacity": 0.9
       }
-    })
+    });
+
+    map.addLayer({
+      id: 'text-layer', // 图层的唯一ID
+      type: 'symbol',
+      source: {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: [
+            {
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates: [-74.5, 40] // 文本标注的经纬度坐标
+              },
+              properties: {
+                text: 'Hello, Mapbox!', // 文本内容
+                size: 18 // 文本大小
+              }
+            }
+          ]
+        }
+      },
+      layout: {
+        'text-field': ['get', 'text'],
+        'text-size': ['get', 'size'],
+        'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+        'text-radial-offset': 0.5,
+        'text-justify': 'auto'
+      },
+      paint: {
+        'text-color': '#000000', // 文本颜色
+        'text-opacity': 1.0
+      }
+    });
+
+
+    // 添加一个名为 'custom-shape' 的源
+    map.addSource('custom-shape', {
+      'type': 'geojson',
+      'data': {
+        'type': 'Feature',
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [119.132445421944, 33.78954335045087] // 指定经纬度坐标
+        }
+      }
+    });
+
+    // 添加一个名为 'custom-shape' 的图层
+    map.addLayer({
+      'id': 'custom-shape',
+      'type': 'circle',
+      'source': 'custom-shape',
+      'paint': {
+        'circle-radius': 10, // 圆形半径
+        'circle-color': '#ff0000' // 圆形颜色
+      }
+    });
+  })
+
+  // 创建标记
+  var marker = new mapboxgl.Marker()
+          .setLngLat([119.132445421944, 33.78954335045087]) // 设置标记的经纬度坐标
+          .addTo(map); // 将标记添加到地图上
+
+  // 创建对话框
+  var tooltip = new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false
   });
+
+  // 监听标记的mouseenter事件
+  marker.getElement().addEventListener('mouseenter', function () {
+    // 设置对话框内容
+    tooltip.setLngLat(marker.getLngLat())
+            .setHTML('<h3>Hello, Mapbox!</h3>')
+            .addTo(map);
+  });
+
+  // 监听标记的mouseleave事件
+  marker.getElement().addEventListener('mouseleave', function () {
+    tooltip.remove();
+  });
+
+  // // 创建标记
+  // var marker = new mapboxgl.Marker()
+  //         .setLngLat([119.132445421944, 33.78954335045087]) // 设置标记的经纬度坐标
+  //         .addTo(map); // 将标记添加到地图上
+  //
+  // // 创建弹窗
+  // var popup = new mapboxgl.Popup({ closeOnClick: false })
+  //         .setHTML('<h3>Hello, Mapbox!</h3>') // 设置弹窗内容
+  //         .addTo(map); // 将弹窗添加到地图上
+  //
+  // // 点击标记时显示弹窗
+  // marker.getElement().addEventListener('click', function() {
+  //   popup.addTo(map);
+  // });
 </script>
 </body>
 </html>
