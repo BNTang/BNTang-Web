@@ -123,6 +123,76 @@ const getCurDateYearMonthEndByMonth = (m) => {
 
 // =====================================================================
 
+/**
+ *
+ * get Chinese Date 获取中国日期(农历)
+ * 用途用来记录生日使用，如果是生日当天，可以根据该方法获取日期来进行程序上面的提示生日快乐
+ *
+ * @param time yyyy-mm-dd
+ * @returns {{a: string, d: (string|*), g: string, m: string}}
+ */
+const getChineseDate = (time) => {
+    let date = time ? new Date(time) : new Date();
+    dateString = date.toLocaleString('zh-CN-u-ca-chinese');
+    dateString = dateString.replace(/(\d+)\s*?年/, (x, y) => {
+        let result = '';
+
+        // 天干
+        result = "甲乙丙丁戊己庚辛壬癸".charAt((y - 4) % 10);
+
+        // 地支
+        result += "子丑寅卯辰巳午未申酉戌亥".charAt((y - 4) % 12);
+        return result;
+    });
+
+    // 取年月日
+    dateString = dateString.split(' ')[0];
+    let g = dateString.substr(0, 2) + '年';
+    let m = dateString.substring(2, dateString.match('月').index) + '月';
+    let d = dateString.match(/\d+/)[0];
+    d = d < 11 ? '初' + numberToString(d) : numberToString(d);
+    let animals = ["猴", "鸡", "狗", "猪", "鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊"];
+    let index = date.toLocaleString('zh-CN-u-ca-chinese').substr(0, 4) % 12;
+    let a = animals[index];
+    return {
+        // 干支
+        g,
+        // 月
+        m,
+        // 日
+        d,
+        // 生肖
+        a
+    };
+}
+const numberToString = (number) => {
+    if (number.match(/\D/) || number.length >= 14) return;
+
+    // 数字对应中文
+    let zhArray = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+    // 进位填充字符，第一位是 个位，可省略
+    let baseArray = ['', '十', '百', '千', '万', '十', '百', '千', '亿', '十', '百', '千', '万'];
+    // 把数字切割成数组并倒序排列，然后进行遍历转成中文
+    let string = String(number).split('').reverse().map((item, index) => {
+        // 如果当前位为0，直接输出数字， 否则输出 数字 + 进位填充字符
+        item = Number(item) === 0 ? zhArray[Number(item)] : zhArray[Number(item)] + baseArray[index];
+        return item;
+        // 倒叙回来数组，拼接成字符串
+    }).reverse().join('');
+
+    // 如果以 一十 开头，可省略一
+    string = string.replace(/^一十/, '十');
+    // 如果有多位相邻的零，只写一个即可
+    string = string.replace(/零+/, '零');
+    let index = -1;
+    if (string.length >= 2) {
+        index = string.lastIndexOf('零');
+    }
+    return index === -1 ? string : string.substring(0, index);
+}
+
+// =====================================================================
+
 exports.getCurDateYearMonthByStart = getCurDateYearMonthByStart;
 exports.getCurDateYearMonthByEnd = getCurDateYearMonthByEnd;
 exports.getCurDateYearMonthByStartDate = getCurDateYearMonthByStartDate;
@@ -132,3 +202,6 @@ exports.getCurDateYearMonthByEndDate = getCurDateYearMonthByEndDate;
 
 exports.getCurDateYearMonthStartByMonth = getCurDateYearMonthStartByMonth;
 exports.getCurDateYearMonthEndByMonth = getCurDateYearMonthEndByMonth;
+
+// =====================================================================
+exports.getChineseDate = getChineseDate;
