@@ -26,11 +26,13 @@
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoiYm50YW5nIiwiYSI6ImNsaXR2ZnFxaDJhMjYzcG52ZGIzcHdldDYifQ.rL9nttXLtDaomq54_gkNWg';
   // var tmsUrl = "http://localhost:8080/geoserver/gwc/service/tms/1.0.0/qqqqqq%3Aaaa@EPSG%3A900913@pbf/{z}/{x}/{y}.pbf";
-  var tmsUrl = "http://localhost:8080/geoserver/gwc/service/tms/1.0.0/example002%3Aexample@EPSG%3A900913@pbf/{z}/{x}/{y}.pbf";
+  // var tmsUrl = "http://localhost:8080/geoserver/gwc/service/tms/1.0.0/example002%3Aexample@EPSG%3A900913@pbf/{z}/{x}/{y}.pbf";
+  const tmsUrl = 'http://localhost:8080/geoserver/gwc/service/tms/1.0.0/zs%3Atest@EPSG%3A900913@pbf/{z}/{x}/{y}.pbf'
   var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11', // 使用默认地图样式，可以根据需要自行修改
-    center: [119.1308, 33.7863], // 设置地图中心经纬度
+    // center: [119.1308, 33.7863], // 设置地图中心经纬度
+    center: [122.3542, 29.9357], // 设置地图中心经纬度
     zoom: 15 // 设置地图缩放级别
   });
   // 添加 GeoServer TMS 图层
@@ -46,7 +48,8 @@
         ]
       },
       // "source-layer": "aaa",
-      "source-layer": "example",
+      // "source-layer": "example",
+      "source-layer": "test",
       "layout": {
         "line-join": "round",
         "line-cap": "round"
@@ -141,21 +144,6 @@
   marker.getElement().addEventListener('mouseleave', function () {
     tooltip.remove();
   });
-
-  // // 创建标记
-  // var marker = new mapboxgl.Marker()
-  //         .setLngLat([119.132445421944, 33.78954335045087]) // 设置标记的经纬度坐标
-  //         .addTo(map); // 将标记添加到地图上
-  //
-  // // 创建弹窗
-  // var popup = new mapboxgl.Popup({ closeOnClick: false })
-  //         .setHTML('<h3>Hello, Mapbox!</h3>') // 设置弹窗内容
-  //         .addTo(map); // 将弹窗添加到地图上
-  //
-  // // 点击标记时显示弹窗
-  // marker.getElement().addEventListener('click', function() {
-  //   popup.addTo(map);
-  // });
 </script>
 </body>
 </html>
