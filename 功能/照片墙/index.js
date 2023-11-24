@@ -1,28 +1,40 @@
-/**
- * Created by BNTang on 2023-11-24 17:03:19
- */
 const ITEM_CLASS_NAME = '.grid-item';
 const DOMContentLoaded_EVENT = 'DOMContentLoaded';
 const PROGRESS_EVENT = 'progress';
 
-function createImages() {
+function createLiDouNaImages() {
+    const container = document.querySelector('.grid');
+    const numberOfImages = 26;
+
+    for (let i = 1; i <= numberOfImages; i++) {
+        const gridItem = document.createElement('div');
+        gridItem.classList.add('grid-item');
+
+        const img = document.createElement('img');
+        img.src = `./images/${String(i).padStart(2, '0')}.jpg`;
+        img.alt = `Image ${i}`;
+        img.loading = 'lazy'; // Implementing lazy loading
+
+        // Randomize image size
+        const randomSize = Math.random() > 0.5 ? 'large' : 'small';
+        gridItem.classList.add(randomSize);
+
+        gridItem.appendChild(img);
+        container.appendChild(gridItem);
+    }
 }
 
-document.addEventListener(DOMContentLoaded_EVENT, function () {
-    // 获取布局元素
-    const grid = document.querySelector('.grid');
+createLiDouNaImages();
 
-    // 初始化布局
+document.addEventListener(DOMContentLoaded_EVENT, function () {
+    const grid = document.querySelector('.grid');
     const masonry = new Masonry(grid, {
         itemSelector: ITEM_CLASS_NAME,
         columnWidth: ITEM_CLASS_NAME,
-        // percentPosition 设置为 true，将使用 columnWidth 作为百分比宽度：
         percentPosition: true
     });
 
-    // 图片加载完成后，重新布局
     imagesLoaded(grid).on(PROGRESS_EVENT, function () {
-        // layout Masonry after each image loads
         masonry.layout();
     });
 });
