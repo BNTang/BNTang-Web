@@ -1,4 +1,3 @@
-<image mode="widthFix" 
-       src="{{filePath}}"
-/>
-<button bindtap="onChooseImage">选择头像</button>
+<view class="title">我是 index 的 view</view>
+<view class="container">我是 index 的 view</view>
+<myDemo/>

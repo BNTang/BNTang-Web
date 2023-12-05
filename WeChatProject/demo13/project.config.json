@@ -1,13 +1,6 @@
 {
-  "description": "项目配置文件",
-  "packOptions": {
-    "ignore": [
-      {
-        "type": "file",
-        "value": ".eslintrc.js"
-      }
-    ]
-  },
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
   "setting": {
     "urlCheck": true,
     "es6": true,
@@ -15,7 +8,7 @@
     "postcss": true,
     "preloadBackgroundData": false,
     "minified": true,
-    "newFeature": false,
+    "newFeature": true,
     "coverView": true,
     "nodeModules": false,
     "autoAudits": false,
@@ -46,19 +39,20 @@
     "useCompilerPlugins": false,
     "ignoreUploadUnusedFiles": true
   },
+  "appid": "wx37eabc883c4516d8",
+  "projectname": "demo13",
+  "libVersion": "2.20.1",
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/",
   "compileType": "miniprogram",
-  "libVersion": "2.19.6",
-  "appid": "wx38c4836e16367ad6",
-  "projectname": "demo03",
-  "debugOptions": {
-    "hidedInDevtools": []
+  "srcMiniprogramRoot": "miniprogram/",
+  "packOptions": {
+    "ignore": [],
+    "include": []
   },
-  "scripts": {},
-  "staticServerOptions": {
-    "baseURL": "",
-    "servePath": ""
+  "editorSetting": {
+    "tabIndent": "auto",
+    "tabSize": 2
   },
-  "isGameTourist": false,
   "condition": {
     "search": {
       "list": []
@@ -66,17 +60,20 @@
     "conversation": {
       "list": []
     },
-    "game": {
-      "list": []
-    },
     "plugin": {
       "list": []
     },
-    "gamePlugin": {
+    "game": {
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "id": -1,
+          "name": "db guide",
+          "pathName": "pages/databaseGuide/databaseGuide"
+        }
+      ]
     }
   }
 }

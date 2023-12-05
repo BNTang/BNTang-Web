@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "myTest": "/components/c-test/c-test",
+    "myDemo": "/components/c-demo/c-demo"
+  }
 }

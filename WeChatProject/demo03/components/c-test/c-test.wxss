@@ -1,0 +1,14 @@
+.container {
+  background: skyblue;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.container .title {
+  color: #666;
+}
+
+.container .content {
+  color: #f00;
+  font-size: 12px;
+}
