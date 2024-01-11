@@ -1,0 +1,1 @@
+"E:\apps\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-5gnw7kej2c68cd30 --n quickstartFunctions --r --project "D:\IdeaPro\BNTang-Web\WeChatProject\demo14" --report_first --report

@@ -1,0 +1,4 @@
+<button type="primary" bindtap="onAddTap">新增</button>
+<button type="primary" bindtap="onRemoveTap">删除</button>
+<button type="primary" bindtap="onUpdateTap">修改</button>
+<button type="primary" bindtap="onQueryTap">查询</button>
