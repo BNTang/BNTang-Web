@@ -1,66 +1,35 @@
-// pages/cloud-storage/index.js
 Page({
+    async onUpTap() {
+        // 1. 拿到相册中的图片
+        const images = await wx.chooseMedia({
+          type: "image"
+        });
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
+        const imagePath = images.tempFiles[0].tempFilePath;
 
-  },
+        // 2.动态生成文件名称
+        const timeStamp = new Date().getTime();
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
+        // 文件后缀
+        const extension = imagePath.split(".").pop();
+        const cloudPath = `test/${timeStamp}.${extension}`;
 
-  },
+        const res = await wx.cloud.uploadFile({
+          // 被上传文件路径
+          filePath: imagePath,
+          // 存储在云端路径
+          cloudPath: cloudPath
+        });
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
+        console.log(res);
+    },
+    onDownTap() {
 
-  },
+    },
+    onDelTap() {
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
+    },
+    onTempPathTap() {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
+    },
 })

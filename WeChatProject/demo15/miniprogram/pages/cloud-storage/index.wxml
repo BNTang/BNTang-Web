@@ -1,2 +1,4 @@
-<!--pages/cloud-storage/index.wxml-->
-<text>pages/cloud-storage/index.wxml</text>
+<button type="primary" bindtap="onUpTap">上传</button>
+<button type="primary" bindtap="onDownTap">下载</button>
+<button type="primary" bindtap="onDelTap">删除</button>
+<button type="primary" bindtap="onTempPathTap">获取临时路径</button>
