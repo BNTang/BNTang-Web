@@ -15,13 +15,28 @@ Page({
 
         console.log(res);
     },
-    onQueryTap() {
-
+    async onQueryTap() {
+        const res = await stuCollection.field({
+            name: true
+        }).get();
+        console.log(res);
     },
-    onRemoveTap() {
+    async onRemoveTap() {
+        // 1.拿到条件判断工具对象
+        const _ = db.command;
+        const res = await stuCollection.where({
+            age: _.lt(19)
+        }).remove();
 
+        console.log(res);
     },
-    onUpdateTap() {
+    async onUpdateTap() {
+        const res = await stuCollection.doc('08bade59659d76d500164eca51e17bd0').update({
+            data: {
+                age: 99
+            }
+        });
 
+        console.log(res);
     }
 })
