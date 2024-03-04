@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Echarts基本使用</title>
+    <!--
+    1.导入Echarts插件
+    -->
+    <script src="js/echarts.js"></script>
+</head>
+<body>
+<!--
+2.为Echarts准备一个容器
+这个容器的作用就是将来用来将图标绘制到什么地方
+-->
+<div style="width: 600px;height: 400px;"></div>
+
+<script>
+    /*
+    3.拿到准备好的容器
+    * */
+    let oDiv = document.querySelector('div');
+
+    /*
+    4.创建一个Echarts对象
+    通过Echarts对象的init方法来创建
+    init 方法需要传递一个参数，这个参数就是我们的容器
+
+    将来 echarts 绘制出来的图表就会绘制到 oDiv 这个容器上
+    * */
+    let myChart = echarts.init(oDiv);
+
+    let option = {
+        toolbox: {
+            show: true,
+            feature: {
+                // 开启保存为图片
+                saveAsImage: {
+                    show: true
+                },
+                // 开启数据视图
+                dataView: {
+                    show: true
+                },
+                // 开启还原
+                restore: {
+                    show: true
+                },
+                dataZoom: {
+                    show: true
+                },
+                magicType: {
+                    show: true,
+                    type: ['line', 'bar']
+                }
+            }
+        },
+        title: {
+            subtext: '副标题',
+            text: 'ECharts 入门示例',
+            left: '70',
+            top: 'top',
+            borderWidth: 2,
+            borderColor: 'red'
+        },
+        legend: {
+            data: ['销量', '产量']
+        },
+        xAxis: {
+            data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+        },
+        yAxis: {},
+        series: [
+            {
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            },
+            {
+                name: '产量',
+                type: 'bar',
+                data: [50, 120, 130, 60, 40, 80]
+            }
+        ]
+    }
+
+    // 将配置传递给Echarts对象
+    myChart.setOption(option);
+</script>
+</body>
+</html>

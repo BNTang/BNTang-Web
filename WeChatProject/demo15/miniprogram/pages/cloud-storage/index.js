@@ -40,7 +40,7 @@ Page({
     },
     async onDelTap() {
         const res = await wx.cloud.deleteFile({
-            fileList: ['cloud://cloud1-5gnw7kej2c68cd30.636c-cloud1-5gnw7kej2c68cd30-1322890583/blob_20230708113926A001.png'],
+            fileList: ['cloud://cloud1-5gnw7kej2c68cd30.636c-cloud1-5gnw7kej2c68cd30-1322890583/dengdeng3.jpg'],
         });
 
         console.log(res);
