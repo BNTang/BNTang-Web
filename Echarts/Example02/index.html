@@ -31,6 +31,10 @@
     let myChart = echarts.init(oDiv);
 
     let option = {
+        tooltip: {
+            show: true,
+            trigger: 'axis'
+        },
         toolbox: {
             show: true,
             feature: {
@@ -79,7 +83,14 @@
             {
                 name: '产量',
                 type: 'bar',
-                data: [50, 120, 130, 60, 40, 80]
+                data: [50, 120, 130, 60, 40, 80],
+                markLine: {
+                    data: [
+                        {type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'},
+                        {type: 'average', name: '平均值'}
+                    ]
+                }
             }
         ]
     }
