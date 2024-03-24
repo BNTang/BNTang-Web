@@ -68,29 +68,28 @@
             borderColor: 'red'
         },
         legend: {
-            data: ['销量', '产量']
+            data: ['销量', '产量', '容量']
         },
-        xAxis: {
-            data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-        },
-        yAxis: {},
         series: [
             {
+                radius: '30%',
+                center: ['30%', '50%'],
                 name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
-            },
-            {
-                name: '产量',
-                type: 'bar',
-                data: [50, 120, 130, 60, 40, 80],
-                markLine: {
-                    data: [
-                        {type: 'max', name: '最大值'},
-                        {type: 'min', name: '最小值'},
-                        {type: 'average', name: '平均值'}
-                    ]
-                }
+                type: 'pie',
+                data: [
+                    {
+                        value: 335,
+                        name: '销量'
+                    },
+                    {
+                        value: 310,
+                        name: '产量'
+                    },
+                    {
+                        value: 234,
+                        name: '容量'
+                    }
+                ]
             }
         ]
     }
