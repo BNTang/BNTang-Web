@@ -1,4 +1,7 @@
 <button type="primary" bindtap="onUpTap">上传</button>
 <button type="primary" bindtap="onDownTap">下载</button>
+<image src="{{tempFilePath}}" mode="widthFix" style="width: 100%;height: 100px;"></image>
 <button type="primary" bindtap="onDelTap">删除</button>
 <button type="primary" bindtap="onTempPathTap">获取临时路径</button>
+
+<image src="https://636c-cloud1-5gnw7kej2c68cd30-1322890583.tcb.qcloud.la/dengdeng3.jpg" mode="widthFix" style="width: 100%;height: 100px;"></image>
