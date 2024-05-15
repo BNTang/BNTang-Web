@@ -10,6 +10,9 @@ const inquirer = require('inquirer');
 const downloadGitRepo = promisify(require('download-git-repo'));
 // 导入 downloadDirPath，用于获取下载路径
 const {downloadDirPath} = require('./const');
+const path = require('path');
+let ncp = require('ncp');
+ncp = promisify(ncp);
 
 const downloadTemplate = async (templateName, version) => {
     // 组织机构的名称/模板名称#版本号
@@ -45,7 +48,7 @@ const getTemplateTags = async (currentTemplateName) => {
 }
 
 module.exports = async (projectName) => {
-    // 获取模板列表
+    /*// 获取模板列表
     const fetchRepoListData = await waitLoading('downloading template names...', fetchRepoList)();
     const templateNames = fetchRepoListData.map((item) => item.name);
 
@@ -71,5 +74,10 @@ module.exports = async (projectName) => {
     })
 
     const destPath = waitLoading('downloading template...', downloadTemplate)(template, version)
-    console.log(destPath)
+    console.log(destPath)*/
+
+    // 将用户目录中的模板拷贝到执行指令路径中
+    const destPath = 'C:\\Users\\BNTang\\.nue-template\\vue-simple-template';
+    await waitLoading('copying template...', ncp)(destPath, path.resolve(projectName));
+    // console.log(path.resolve(projectName));
 }
