@@ -52,11 +52,14 @@ const installDependencies = async (projectName) => {
 }
 
 module.exports = async (projectName) => {
-    /*// 获取模板列表
+    const destPath = path.resolve(projectName)
+    console.log(`✨  Creating project in ${destPath}`)
+
+    // 1.获取模板列表
     const fetchRepoListData = await waitLoading('downloading template names...', fetchRepoList)();
     const templateNames = fetchRepoListData.map((item) => item.name);
 
-    // 选择模板
+    // 2.选择模板
     const {template} = await inquirer.prompt([
         {
             type: 'list',
@@ -66,10 +69,11 @@ module.exports = async (projectName) => {
         }
     ]);
 
-    // 获取模板标签
+    // 3.获取模板标签
     const fetchTemplateTags = await waitLoading('downloading template tags...', getTemplateTags)(template);
     const tags = fetchTemplateTags.map((item) => item.name);
 
+    // 4.让用户选择版本号
     const {version} = await inquirer.prompt({
         name: 'version',
         type: 'list',
@@ -77,14 +81,14 @@ module.exports = async (projectName) => {
         choices: tags
     })
 
-    const destPath = waitLoading('downloading template...', downloadTemplate)(template, version)
-    console.log(destPath)*/
+    // 5.下载用户选择的模板
+    console.log(`🗃  Initializing git repository...`);
+    const sourcePath = waitLoading('downloading template...', downloadTemplate)(template, version)
 
-    // 将用户目录中的模板拷贝到执行指令路径中
-    /*const destPath = 'C:\\Users\\BNTang\\.nue-template\\vue-simple-template';
-    await waitLoading('copying template...', ncp)(destPath, path.resolve(projectName));*/
-    // console.log(path.resolve(projectName));
+    // 6.将用户目录中的模板拷贝到执行指令路径中
+    await waitLoading('copying template...', ncp)(sourcePath, destPath);
 
-    // 执行 npm install
+    // 7.执行 npm install
+    console.log(`📦  Installing additional dependencies...`);
     await waitLoading('installing dependencies...', installDependencies)(projectName);
 }
