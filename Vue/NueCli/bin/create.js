@@ -13,7 +13,8 @@ const {downloadDirPath} = require('./const');
 const path = require('path');
 let ncp = require('ncp');
 ncp = promisify(ncp);
-
+const shell = require('shelljs');
+const exec = promisify(shell.exec);
 const downloadTemplate = async (templateName, version) => {
     // 组织机构的名称/模板名称#版本号
     // 1.拼接模板在github上的地址
@@ -40,11 +41,14 @@ const waitLoading = (message, fn) => async (...args) => {
     spinner.succeed(`${message} successfully`);
     return result;
 }
-
 // 获取模板标签，也就是版本号
 const getTemplateTags = async (currentTemplateName) => {
     const {data} = await axios.get(`https://api.github.com/repos/neo-it6666/${currentTemplateName}/tags`)
     return data;
+}
+const installDependencies = async (projectName) => {
+    shell.cd(projectName);
+    await exec('npm install');
 }
 
 module.exports = async (projectName) => {
@@ -77,7 +81,10 @@ module.exports = async (projectName) => {
     console.log(destPath)*/
 
     // 将用户目录中的模板拷贝到执行指令路径中
-    const destPath = 'C:\\Users\\BNTang\\.nue-template\\vue-simple-template';
-    await waitLoading('copying template...', ncp)(destPath, path.resolve(projectName));
+    /*const destPath = 'C:\\Users\\BNTang\\.nue-template\\vue-simple-template';
+    await waitLoading('copying template...', ncp)(destPath, path.resolve(projectName));*/
     // console.log(path.resolve(projectName));
+
+    // 执行 npm install
+    await waitLoading('installing dependencies...', installDependencies)(projectName);
 }
