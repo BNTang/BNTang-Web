@@ -1,66 +1,63 @@
-// 导入 util 模块
 const {promisify} = require('util');
-// 导入 axios
 const axios = require('axios');
-// 导入 ora，用于显示加载中
 const ora = require('ora');
-// 导入 inquirer，用于命令行交互
 const inquirer = require('inquirer');
-// 导入 download-git-repo，用于下载模板
 const downloadGitRepo = promisify(require('download-git-repo'));
-// 导入 downloadDirPath，用于获取下载路径
 const {downloadDirPath} = require('./const');
 const path = require('path');
 let ncp = require('ncp');
 ncp = promisify(ncp);
 const shell = require('shelljs');
 const exec = promisify(shell.exec);
+const chalk = require('chalk');
+const fs = require('fs');
+const Metalsmith = require('metalsmith');
 const downloadTemplate = async (templateName, version) => {
-    // 组织机构的名称/模板名称#版本号
-    // 1.拼接模板在github上的地址
     let url = `neo-it6666/${templateName}`;
-
     if (version) {
         url += `#${version}`;
     }
-
-    // 2.拼接存储下载好的模板的路径
     const downloadPath = `${downloadDirPath}\\${templateName}`;
     await downloadGitRepo(url, downloadPath);
     return downloadPath;
 }
 
 const fetchRepoList = async () => {
-    const {data} = await axios.get('https://api.github.com/orgs/neo-it6666/repos')
+    const {data} = await axios.get('https://api.github.com/orgs/neo-it6666/repos');
     return data;
 }
 
 const waitLoading = (message, fn) => async (...args) => {
     const spinner = ora(message).start();
-    const result = await fn(...args);
-    spinner.succeed(`${message} successfully`);
-    return result;
+    try {
+        const result = await fn(...args);
+        spinner.succeed(`${message} successfully`);
+        return result;
+    } catch (error) {
+        spinner.fail(`${message} failed`);
+        throw error;
+    }
 }
-// 获取模板标签，也就是版本号
+
 const getTemplateTags = async (currentTemplateName) => {
-    const {data} = await axios.get(`https://api.github.com/repos/neo-it6666/${currentTemplateName}/tags`)
+    const {data} = await axios.get(`https://api.github.com/repos/neo-it6666/${currentTemplateName}/tags`);
     return data;
 }
+
 const installDependencies = async (projectName) => {
     shell.cd(projectName);
+    // 设置 npm 源为官方源，并等待其执行完成
     await exec('npm install');
 }
 
 module.exports = async (projectName) => {
-    const destPath = path.resolve(projectName)
-    console.log(`✨  Creating project in ${destPath}`)
+    const destPath = path.resolve(projectName);
+    /*console.log(chalk.green(`✨  Creating project in `) + chalk.red(`${destPath}`));
 
-    // 1.获取模板列表
     const fetchRepoListData = await waitLoading('downloading template names...', fetchRepoList)();
     const templateNames = fetchRepoListData.map((item) => item.name);
 
-    // 2.选择模板
-    const {template} = await inquirer.prompt([
+    const { template } = await inquirer.prompt([
         {
             type: 'list',
             name: 'template',
@@ -69,26 +66,70 @@ module.exports = async (projectName) => {
         }
     ]);
 
-    // 3.获取模板标签
     const fetchTemplateTags = await waitLoading('downloading template tags...', getTemplateTags)(template);
     const tags = fetchTemplateTags.map((item) => item.name);
 
-    // 4.让用户选择版本号
-    const {version} = await inquirer.prompt({
+    const { version } = await inquirer.prompt({
         name: 'version',
         type: 'list',
         message: 'Please select the version number',
         choices: tags
     })
 
-    // 5.下载用户选择的模板
-    console.log(`🗃  Initializing git repository...`);
-    const sourcePath = waitLoading('downloading template...', downloadTemplate)(template, version)
+    console.log(chalk.green(`🗃  Initializing git repository...`));
+    const sourcePath = await waitLoading('downloading template...', downloadTemplate)(template, version);*/
 
-    // 6.将用户目录中的模板拷贝到执行指令路径中
-    await waitLoading('copying template...', ncp)(sourcePath, destPath);
+    const sourcePath = `C:\\Users\\BNTang\\.nue-template\\vue-advanced-template`;
+    const askPath = path.join(sourcePath, 'ask.js');
+    if (!fs.existsSync(askPath)) {
+        await waitLoading('copying template...', ncp)(sourcePath, destPath);
+    } else {
+        // 处理用户输入
+        await new Promise((resolve, reject) => {
+            // 处理用户输入
+            Metalsmith(__dirname)
+                // 配置源目录
+                .source(sourcePath)
+                // 配置目标目录
+                .destination(destPath)
+                // 注册一个插件
+                .use(async (files, metal, done) => {
+                    // 获取元数据
+                    const args = require(askPath);
+                    // 执行询问
+                    const result = inquirer.prompt(args);
+                    // 将询问的结果挂载到 metal.metadata() 上，这样在下一个插件中就可以获取到询问的结果
+                    const data = await result;
+                    const meta = metal.metadata();
+                    Object.assign(meta, data);
+                    done();
+                })
+                .use(async (files, metal, done) => {
+                    // 从 metal.metadata() 获取到用户输入的数据
+                    const meta = metal.metadata();
+                    console.log(meta);
+                    done();
+                })
+                .build((err) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve();
+                    }
+                });
+        });
+    }
 
-    // 7.执行 npm install
-    console.log(`📦  Installing additional dependencies...`);
-    await waitLoading('installing dependencies...', installDependencies)(projectName);
+    console.log(chalk.green(`📦  Installing additional dependencies...`));
+    try {
+        await waitLoading('installing dependencies...', installDependencies)(projectName);
+    } catch (error) {
+        console.error(`Failed to install dependencies: ${error.message}`);
+        process.exit(1); // 退出程序并返回错误码
+    }
+
+    console.log(chalk.green(` Successfully created project ${projectName}`));
+    console.log(chalk.green(` Get started with the following commands:`));
+    console.log(chalk.magenta(` $ cd ${projectName}`));
+    console.log(chalk.magenta(` $ npm run serve`));
 }
