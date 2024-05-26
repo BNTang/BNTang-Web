@@ -12,6 +12,8 @@ const exec = promisify(shell.exec);
 const chalk = require('chalk');
 const fs = require('fs');
 const Metalsmith = require('metalsmith');
+let {render} = require('consolidate').ejs;
+render = promisify(render);
 const downloadTemplate = async (templateName, version) => {
     let url = `neo-it6666/${templateName}`;
     if (version) {
@@ -107,7 +109,17 @@ module.exports = async (projectName) => {
                 .use(async (files, metal, done) => {
                     // 从 metal.metadata() 获取到用户输入的数据
                     const meta = metal.metadata();
-                    console.log(meta);
+                    Reflect.ownKeys(files).forEach(async (file) => {
+                        // 判断是否是模板文件
+                        if (file.includes('js') || file.includes('json')) {
+                            // 判断是否需要编译
+                            const fileContent = files[file].contents.toString();
+                            if (fileContent.includes('<%')) {
+                                const result = await render(fileContent, meta);
+                                files[file].contents = Buffer.from(result);
+                            }
+                        }
+                    });
                     done();
                 })
                 .build((err) => {
@@ -120,7 +132,7 @@ module.exports = async (projectName) => {
         });
     }
 
-    console.log(chalk.green(`📦  Installing additional dependencies...`));
+    /*console.log(chalk.green(`📦  Installing additional dependencies...`));
     try {
         await waitLoading('installing dependencies...', installDependencies)(projectName);
     } catch (error) {
@@ -131,5 +143,5 @@ module.exports = async (projectName) => {
     console.log(chalk.green(` Successfully created project ${projectName}`));
     console.log(chalk.green(` Get started with the following commands:`));
     console.log(chalk.magenta(` $ cd ${projectName}`));
-    console.log(chalk.magenta(` $ npm run serve`));
+    console.log(chalk.magenta(` $ npm run serve`));*/
 }
