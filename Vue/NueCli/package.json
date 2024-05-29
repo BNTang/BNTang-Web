@@ -1,6 +1,6 @@
 {
   "name": "nue-cli-1.0.0",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -31,6 +31,7 @@
     "metalsmith": "^2.6.3",
     "ncp": "^2.0.0",
     "ora": "^5.4.0",
-    "shelljs": "^0.8.5"
+    "shelljs": "^0.8.5",
+    "update-notifier": "^5.1.0"
   }
 }

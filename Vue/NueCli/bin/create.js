@@ -14,6 +14,17 @@ const fs = require('fs');
 const Metalsmith = require('metalsmith');
 let {render} = require('consolidate').ejs;
 render = promisify(render);
+const updateNotifier = require('update-notifier');
+const pkg = require('../package.json');
+
+const checkVersion = () => {
+    const { update } = updateNotifier({ pkg, updateCheckInterval: 0 });
+
+    if (update) {
+        console.log(`Update available: ${chalk.green(update.latest)}`);
+    }
+};
+
 const downloadTemplate = async (templateName, version) => {
     let url = `neo-it6666/${templateName}`;
     if (version) {
@@ -28,7 +39,6 @@ const fetchRepoList = async () => {
     const {data} = await axios.get('https://api.github.com/orgs/neo-it6666/repos');
     return data;
 }
-
 const waitLoading = (message, fn) => async (...args) => {
     const spinner = ora(message).start();
     try {
@@ -53,7 +63,9 @@ const installDependencies = async (projectName) => {
 }
 
 module.exports = async (projectName) => {
-    const destPath = path.resolve(projectName);
+    checkVersion();
+
+    // const destPath = path.resolve(projectName);
     /*console.log(chalk.green(`✨  Creating project in `) + chalk.red(`${destPath}`));
 
     const fetchRepoListData = await waitLoading('downloading template names...', fetchRepoList)();
@@ -81,7 +93,7 @@ module.exports = async (projectName) => {
     console.log(chalk.green(`🗃  Initializing git repository...`));
     const sourcePath = await waitLoading('downloading template...', downloadTemplate)(template, version);*/
 
-    const sourcePath = `C:\\Users\\BNTang\\.nue-template\\vue-advanced-template`;
+   /* const sourcePath = `C:\\Users\\BNTang\\.nue-template\\vue-advanced-template`;
     const askPath = path.join(sourcePath, 'ask.js');
     if (!fs.existsSync(askPath)) {
         await waitLoading('copying template...', ncp)(sourcePath, destPath);
@@ -130,7 +142,7 @@ module.exports = async (projectName) => {
                     }
                 });
         });
-    }
+    }*/
 
     /*console.log(chalk.green(`📦  Installing additional dependencies...`));
     try {
