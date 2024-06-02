@@ -16,12 +16,38 @@ let {render} = require('consolidate').ejs;
 render = promisify(render);
 const updateNotifier = require('update-notifier');
 const pkg = require('../package.json');
+const boxen = require('boxen');
 
 const checkVersion = () => {
-    const { update } = updateNotifier({ pkg, updateCheckInterval: 0 });
+    const {update} = updateNotifier({pkg, updateCheckInterval: 0});
 
     if (update) {
-        console.log(`Update available: ${chalk.green(update.latest)}`);
+        const message = [];
+
+        message.push(
+            `${chalk.bgYellow.black(' WARNI: ')}  Nue-Cli is not latest. \n`,
+        );
+
+        message.push(
+            chalk.grey('current ')
+            + chalk.grey(update.current)
+            + chalk.grey(' → ')
+            + chalk.grey('latest ')
+            + chalk.green(update.latest),
+        );
+
+        message.push(
+            `${chalk.grey('Up to date')
+            }npm i -g ${pkg.name}`,
+        )
+
+        console.log(boxen(message.join('\n'), {
+            padding: 2,
+            margin: 2,
+            align: 'center',
+            borderColor: 'yellow',
+            borderStyle: 'round',
+        }));
     }
 };
 
@@ -93,56 +119,56 @@ module.exports = async (projectName) => {
     console.log(chalk.green(`🗃  Initializing git repository...`));
     const sourcePath = await waitLoading('downloading template...', downloadTemplate)(template, version);*/
 
-   /* const sourcePath = `C:\\Users\\BNTang\\.nue-template\\vue-advanced-template`;
-    const askPath = path.join(sourcePath, 'ask.js');
-    if (!fs.existsSync(askPath)) {
-        await waitLoading('copying template...', ncp)(sourcePath, destPath);
-    } else {
-        // 处理用户输入
-        await new Promise((resolve, reject) => {
-            // 处理用户输入
-            Metalsmith(__dirname)
-                // 配置源目录
-                .source(sourcePath)
-                // 配置目标目录
-                .destination(destPath)
-                // 注册一个插件
-                .use(async (files, metal, done) => {
-                    // 获取元数据
-                    const args = require(askPath);
-                    // 执行询问
-                    const result = inquirer.prompt(args);
-                    // 将询问的结果挂载到 metal.metadata() 上，这样在下一个插件中就可以获取到询问的结果
-                    const data = await result;
-                    const meta = metal.metadata();
-                    Object.assign(meta, data);
-                    done();
-                })
-                .use(async (files, metal, done) => {
-                    // 从 metal.metadata() 获取到用户输入的数据
-                    const meta = metal.metadata();
-                    Reflect.ownKeys(files).forEach(async (file) => {
-                        // 判断是否是模板文件
-                        if (file.includes('js') || file.includes('json')) {
-                            // 判断是否需要编译
-                            const fileContent = files[file].contents.toString();
-                            if (fileContent.includes('<%')) {
-                                const result = await render(fileContent, meta);
-                                files[file].contents = Buffer.from(result);
-                            }
-                        }
-                    });
-                    done();
-                })
-                .build((err) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve();
-                    }
-                });
-        });
-    }*/
+    /* const sourcePath = `C:\\Users\\BNTang\\.nue-template\\vue-advanced-template`;
+     const askPath = path.join(sourcePath, 'ask.js');
+     if (!fs.existsSync(askPath)) {
+         await waitLoading('copying template...', ncp)(sourcePath, destPath);
+     } else {
+         // 处理用户输入
+         await new Promise((resolve, reject) => {
+             // 处理用户输入
+             Metalsmith(__dirname)
+                 // 配置源目录
+                 .source(sourcePath)
+                 // 配置目标目录
+                 .destination(destPath)
+                 // 注册一个插件
+                 .use(async (files, metal, done) => {
+                     // 获取元数据
+                     const args = require(askPath);
+                     // 执行询问
+                     const result = inquirer.prompt(args);
+                     // 将询问的结果挂载到 metal.metadata() 上，这样在下一个插件中就可以获取到询问的结果
+                     const data = await result;
+                     const meta = metal.metadata();
+                     Object.assign(meta, data);
+                     done();
+                 })
+                 .use(async (files, metal, done) => {
+                     // 从 metal.metadata() 获取到用户输入的数据
+                     const meta = metal.metadata();
+                     Reflect.ownKeys(files).forEach(async (file) => {
+                         // 判断是否是模板文件
+                         if (file.includes('js') || file.includes('json')) {
+                             // 判断是否需要编译
+                             const fileContent = files[file].contents.toString();
+                             if (fileContent.includes('<%')) {
+                                 const result = await render(fileContent, meta);
+                                 files[file].contents = Buffer.from(result);
+                             }
+                         }
+                     });
+                     done();
+                 })
+                 .build((err) => {
+                     if (err) {
+                         reject(err);
+                     } else {
+                         resolve();
+                     }
+                 });
+         });
+     }*/
 
     /*console.log(chalk.green(`📦  Installing additional dependencies...`));
     try {
