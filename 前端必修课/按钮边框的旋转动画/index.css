@@ -1,0 +1,48 @@
+body {
+    background: #000;
+}
+button {
+    margin-top: 100px;
+    /*垂直居中显示*/
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*边框样式*/
+    border: none;
+    /*透明背景*/
+    background-color: transparent;
+    color: #2b717d;
+    border-radius: 5px;
+    z-index: 1;
+    height: 50px;
+    width: 100px;
+    cursor: pointer;
+    /*outline: 1px solid #fff;*/
+    position: relative;
+    overflow: hidden;
+}
+button:before {
+    content: '';
+    position: absolute;
+    width: 350%;
+    height: 450%;
+    background: #f40;
+    z-index: -2;
+    left: 50%;
+    top: 50%;
+    transform-origin: left top;
+    animation: rotation 4s linear infinite;
+}
+button:after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: #333;
+    z-index: -1;
+    border-radius: inherit;
+}
+@keyframes rotation {
+    to {
+        transform: rotate(360deg);
+    }
+}
