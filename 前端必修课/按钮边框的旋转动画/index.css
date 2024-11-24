@@ -1,48 +1,73 @@
+/* 全局样式 */
 body {
-    background: #000;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    font-family: Arial, sans-serif;
 }
+
+/* 按钮样式 */
 button {
-    margin-top: 100px;
-    /*垂直居中显示*/
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /*边框样式*/
-    border: none;
-    /*透明背景*/
-    background-color: transparent;
-    color: #2b717d;
-    border-radius: 5px;
-    z-index: 1;
-    height: 50px;
-    width: 100px;
-    cursor: pointer;
-    /*outline: 1px solid #fff;*/
     position: relative;
+    display: inline-block;
+    border: none;
+    background: transparent;
+    color: #2b717d;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    height: 50px;
+    width: 150px;
+    cursor: pointer;
     overflow: hidden;
+    z-index: 1;
+    transition: color 0.3s ease-in-out;
 }
+
+/* 按钮边框旋转动画 */
 button:before {
     content: '';
     position: absolute;
     width: 350%;
     height: 450%;
-    background: #f40;
+    background: linear-gradient(90deg, #f40, #ffcc00, #2b717d, #f40);
     z-index: -2;
     left: 50%;
     top: 50%;
     transform-origin: left top;
-    animation: rotation 4s linear infinite;
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: rotation 5s linear infinite;
 }
+
+/* 按钮背景 */
 button:after {
     content: '';
     position: absolute;
     inset: 4px;
-    background: #333;
+    background: #111;
     z-index: -1;
     border-radius: inherit;
+    transition: background-color 0.3s ease-in-out;
 }
+
+/* 按钮悬停效果 */
+button:hover {
+    color: #fff;
+}
+
+button:hover:after {
+    background: #333;
+}
+
+/* 动画关键帧 */
 @keyframes rotation {
-    to {
-        transform: rotate(360deg);
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
     }
 }
