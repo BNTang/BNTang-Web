@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Table Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item, index) in people" :key="index">
+                    <td><input v-model="item.name" /></td>
+                    <td><input v-model="item.age" /></td>
+                    <td><input v-model="item.city" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                people: [
+                    { name: 'John', age: 30, city: 'New York' },
+                    { name: 'Jane', age: 25, city: 'London' },
+                    { name: 'Tom', age: 35, city: 'Paris' }
+                ]
+            }
+        });
+    </script>
+</body>
+</html>
+
+</body>
+</html>
