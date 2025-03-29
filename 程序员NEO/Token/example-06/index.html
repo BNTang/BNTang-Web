@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型分词困惑</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">分词困惑对话</h1>
+
+        <div class="conversation-scene">
+            <div class="character person">
+                <div class="character-bubble">
+                    <p>我听完你的解释，好像更疑惑了...</p>
+                    <p><strong>哎，怎么Token又可以是一个字，又可以是两个字，还可以是三个字，又可以是一个单词或者半个单词呢？</strong></p>
+                    <p>这到底是怎么定出来的呀？</p>
+                </div>
+                <div class="stick-figure person-figure">
+                    <div class="head"></div>
+                    <div class="body"></div>
+                    <div class="arm arm-left"></div>
+                    <div class="arm arm-right"></div>
+                    <div class="leg leg-left"></div>
+                    <div class="leg leg-right"></div>
+                    <div class="confused-mark">?</div>
+                </div>
+            </div>
+
+            <div class="character ai">
+                <div class="stick-figure ai-figure">
+                    <div class="head">NEO</div>
+                    <div class="body"></div>
+                    <div class="arm arm-left"></div>
+                    <div class="arm arm-right"></div>
+                    <div class="leg leg-left"></div>
+                    <div class="leg leg-right"></div>
+                </div>
+                <div class="character-bubble">
+                    <p>我理解你的困惑！这确实看起来很不规则。</p>
+                    <p>简单来说，大模型的Token是基于<strong>数据统计</strong>的结果，常见的词组被保留为整体，不常见的会被拆分。</p>
+                    <p>这是因为模型在大量文本上训练时，会记住频繁出现的词组模式。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
