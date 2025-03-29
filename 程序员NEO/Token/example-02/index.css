@@ -1,0 +1,293 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+.container {
+    width: 900px;
+    height: 600px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    overflow: hidden;
+    position: relative;
+}
+
+.title {
+    text-align: center;
+    padding: 15px 0;
+    background: linear-gradient(90deg, #4a89dc, #5d9cec);
+    color: white;
+}
+
+.scene {
+    width: 100%;
+    height: calc(100% - 60px);
+    position: relative;
+    background: linear-gradient(to bottom, #e9f5ff 0%, #d0e9ff 100%);
+    overflow: hidden;
+}
+
+/* 装饰元素 */
+.decoration {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.decoration-1 {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(144,224,239,0.5) 0%, rgba(144,224,239,0) 70%);
+    top: -50px;
+    left: -50px;
+}
+
+.decoration-2 {
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(202,240,248,0.5) 0%, rgba(202,240,248,0) 70%);
+    bottom: 30px;
+    right: 50px;
+}
+
+.character {
+    position: absolute;
+    bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.5s ease;
+}
+
+.friend {
+    left: 150px;
+}
+
+.neo {
+    right: 150px;
+}
+
+.head {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(145deg, #ffdbac, #ffe9cc);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.friend .head {
+    background: linear-gradient(145deg, #ffdbac, #ffe9cc);
+}
+
+.neo .head {
+    background: linear-gradient(145deg, #f0c087, #ffd1a7);
+}
+
+.face {
+    position: relative;
+}
+
+.face:before, .face:after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #333;
+    border-radius: 50%;
+    top: 40px;
+}
+
+.face:before {
+    left: 25px;
+}
+
+.face:after {
+    right: 25px;
+}
+
+.friend .face:after {
+    transform: rotate(10deg);
+}
+
+.neo .face:before {
+    transform: rotate(-10deg);
+}
+
+.body {
+    width: 120px;
+    height: 150px;
+    border-radius: 25px 25px 0 0;
+    margin-top: -20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: -1;
+}
+
+.friend .body {
+    background: linear-gradient(to bottom, #6c8ebf, #5d7eaa);
+}
+
+.neo .body {
+    background: linear-gradient(to bottom, #a67c52, #8c6845);
+}
+
+.name-tag {
+    margin-top: 10px;
+    background-color: rgba(255,255,255,0.8);
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.speech-bubble {
+    position: absolute;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 320px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-left: 5px solid #4a89dc;
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid white;
+}
+
+.friend-bubble {
+    left: 80px;
+    top: 120px;
+}
+
+.friend-bubble:after {
+    left: 30px;
+}
+
+.neo-bubble {
+    right: 80px;
+    top: 120px;
+    border-left: none;
+    border-right: 5px solid #4a89dc;
+}
+
+.neo-bubble:after {
+    right: 30px;
+}
+
+.speech-bubble p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.speech-bubble.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.controls {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 100;
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #5d9cec, #4a89dc);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 4px 10px rgba(74, 137, 220, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.primary-btn {
+    width: auto;
+    padding: 0 20px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #36d1dc, #5b86e5);
+}
+
+.primary-btn i {
+    margin-right: 8px;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px rgba(74, 137, 220, 0.4);
+}
+
+button.primary-btn:hover {
+    background: linear-gradient(135deg, #30c1cc, #4b76d5);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(74, 137, 220, 0.4);
+}
+
+/* 添加响应式设计 */
+@media (max-width: 920px) {
+    .container {
+        width: 95%;
+        height: 90vh;
+    }
+}
+
+@media (max-width: 600px) {
+    .character {
+        transform: scale(0.8);
+    }
+    
+    .friend {
+        left: 100px;
+    }
+    
+    .neo {
+        right: 100px;
+    }
+    
+    .speech-bubble {
+        max-width: 250px;
+        padding: 15px;
+    }
+}
+```
