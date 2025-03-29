@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大语言模型分词器演示</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">大模型是如何分词的</h1>
+        
+        <div class="scene">
+            <div class="notebook-container">
+                <div class="notebook">
+                    <div class="notebook-lines"></div>
+                    <div class="notebook-text" id="original-text">我喜欢唱、跳、Rap和篮球</div>
+                    <div class="notebook-tokens" id="tokens-display"></div>
+                </div>
+                <div class="notebook-shadow"></div>
+            </div>
+            
+            <div class="robot-container right">
+                <div class="robot chatgpt">
+                    <div class="robot-head">
+                        <div class="eyes">
+                            <div class="eye"></div>
+                            <div class="eye"></div>
+                        </div>
+                        <div class="mouth"></div>
+                    </div>
+                    <div class="robot-body">
+                        <div class="logo">ChatGPT</div>
+                    </div>
+                    <div class="robot-arms">
+                        <div class="arm left-arm"></div>
+                        <div class="arm right-arm"></div>
+                    </div>
+                    <div class="robot-legs">
+                        <div class="leg left-leg"></div>
+                        <div class="leg right-leg"></div>
+                    </div>
+                </div>
+                <div class="tokenizer chatgpt-tokenizer">
+                    <div class="tokenizer-head">
+                        <div class="eye"></div>
+                        <div class="knife"><i class="fas fa-cut"></i></div>
+                    </div>
+                    <div class="tokenizer-body">
+                        <div class="badge">分词器</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-panel">
+            <h2>分词过程</h2>
+            <p>大语言模型在处理文本时，首先需要将文本切分成一个个"词元"(Token)。这个过程就是分词。</p>
+            <button id="tokenize-btn">开始分词演示</button>
+            <div class="token-examples" id="token-result">
+                <h3>分词结果：</h3>
+                <div class="example" id="example-text">
+                    等待分词...
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 大语言模型演示 - 了解更多关于AI和分词技术</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>

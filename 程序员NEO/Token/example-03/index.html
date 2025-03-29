@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Robots & Tokenizers</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">超大语言模型与它们的分词器小弟</h1>
+        
+        <div class="scene">
+            <div class="robot-container left">
+                <div class="robot deepseek">
+                    <div class="robot-head">
+                        <div class="eyes">
+                            <div class="eye"></div>
+                            <div class="eye"></div>
+                        </div>
+                        <div class="mouth"></div>
+                    </div>
+                    <div class="robot-body">
+                        <div class="logo">DeepSeek</div>
+                    </div>
+                    <div class="robot-arms">
+                        <div class="arm left-arm"></div>
+                        <div class="arm right-arm"></div>
+                    </div>
+                    <div class="robot-legs">
+                        <div class="leg left-leg"></div>
+                        <div class="leg right-leg"></div>
+                    </div>
+                </div>
+                <div class="tokenizer deepseek-tokenizer">
+                    <div class="tokenizer-head">
+                        <div class="eye"></div>
+                        <div class="knife"><i class="fas fa-cut"></i></div>
+                    </div>
+                    <div class="tokenizer-body">
+                        <div class="badge">分词器</div>
+                    </div>
+                </div>
+                <!-- 移除了左侧对话气泡 -->
+            </div>
+            
+            <div class="robot-container right">
+                <div class="robot chatgpt">
+                    <div class="robot-head">
+                        <div class="eyes">
+                            <div class="eye"></div>
+                            <div class="eye"></div>
+                        </div>
+                        <div class="mouth"></div>
+                    </div>
+                    <div class="robot-body">
+                        <div class="logo">ChatGPT</div>
+                    </div>
+                    <div class="robot-arms">
+                        <div class="arm left-arm"></div>
+                        <div class="arm right-arm"></div>
+                    </div>
+                    <div class="robot-legs">
+                        <div class="leg left-leg"></div>
+                        <div class="leg right-leg"></div>
+                    </div>
+                </div>
+                <div class="tokenizer chatgpt-tokenizer">
+                    <div class="tokenizer-head">
+                        <div class="eye"></div>
+                        <div class="knife"><i class="fas fa-cut"></i></div>
+                    </div>
+                    <div class="tokenizer-body">
+                        <div class="badge">分词器</div>
+                    </div>
+                </div>
+                <!-- 移除了右侧对话气泡 -->
+            </div>
+        </div>
+        
+        <div class="info-panel">
+            <h2>超大语言模型 (LLM) 解析</h2>
+            <p>超大语言模型是基于深度学习的AI系统，通过海量文本数据训练，能够理解和生成人类语言。</p>
+            <p>而分词器（Tokenizer）则是LLM的核心助手，负责将输入文本切分成模型可处理的单元（Token），是模型理解语言的第一步。</p>
+            <div class="token-examples">
+                <h3>分词示例：</h3>
+                <div class="example" id="example-text">
+                    "超大语言模型与分词器协同工作" → ["超大", "语言", "模型", "与", "分词器", "协同", "工作"]
+                </div>
+                <button id="tokenize-btn">展示分词过程</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2023 LLM演示 - 了解更多关于大型语言模型和分词技术</p>
+    </footer>
+    
+    <script src="index.js"></script>
+</body>
+</html>
