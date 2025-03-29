@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek Token Animation</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="robot">
+            <div class="robot-head">
+                <div class="robot-eye left-eye"></div>
+                <div class="robot-eye right-eye"></div>
+                <div class="robot-mouth"></div>
+                <div class="robot-antenna"></div>
+            </div>
+            <div class="robot-body">
+                <div class="robot-logo">DeepSeek</div>
+                <div class="robot-control-panel">
+                    <div class="robot-button"></div>
+                    <div class="robot-button"></div>
+                    <div class="robot-button"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="token-container">
+            <div class="token-display">
+                <div class="typing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div id="output-text"></div>
+            </div>
+            <div class="token-bubble-container" id="token-bubbles"></div>
+        </div>
+
+        <button class="start-btn" id="startAnimation">开始生成</button>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>

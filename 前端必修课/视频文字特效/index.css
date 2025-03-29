@@ -1,0 +1,16 @@
+.container .txt {
+    color: #000;
+    font-size: 10em;
+    font-weight: bold;
+    font-family: "华文宋体";
+}
+
+.txt {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    mix-blend-mode: screen;
+}
