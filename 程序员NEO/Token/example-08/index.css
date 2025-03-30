@@ -1,0 +1,455 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f9ff;
+    overflow: hidden;
+}
+
+.scene {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    margin: 20px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 天空 */
+.sky {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to bottom, #87ceeb, #a6e1fb);
+    z-index: 1;
+}
+
+.sun {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: #ffeb3b;
+    border-radius: 50%;
+    top: 50px;
+    right: 100px;
+    box-shadow: 0 0 60px #ffeb3b, 0 0 120px rgba(255, 235, 59, 0.4);
+    animation: sun-glow 4s infinite alternate;
+}
+
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50px;
+}
+
+.cloud1 {
+    width: 120px;
+    height: 40px;
+    top: 80px;
+    left: 100px;
+    animation: float-cloud 30s linear infinite;
+}
+
+.cloud2 {
+    width: 80px;
+    height: 30px;
+    top: 140px;
+    left: 300px;
+    animation: float-cloud 25s linear infinite;
+}
+
+.cloud3 {
+    width: 100px;
+    height: 35px;
+    top: 100px;
+    left: 500px;
+    animation: float-cloud 35s linear infinite;
+}
+
+/* 大海 */
+.sea {
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to bottom, #0077be, #33a6cc);
+    z-index: 2;
+    overflow: hidden;
+}
+
+.wave {
+    position: absolute;
+    height: 60px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 100%;
+}
+
+.wave1 {
+    bottom: -20px;
+    animation: wave 8s ease-in-out infinite;
+}
+
+.wave2 {
+    bottom: -10px;
+    animation: wave 6s ease-in-out infinite;
+}
+
+.wave3 {
+    bottom: 0;
+    animation: wave 7s ease-in-out infinite;
+}
+
+/* 沙滩 */
+.beach {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: #e6c588;
+    border-radius: 0 0 20px 20px;
+    z-index: 3;
+}
+
+/* 躺椅 */
+.beach-chair {
+    position: absolute;
+    bottom: 80px;
+    left: 45%;
+    transform: translateX(-50%);
+    z-index: 5;
+    width: 120px;
+    height: 150px;
+}
+
+.chair-frame {
+    position: absolute;
+    width: 110px;
+    height: 140px;
+    border: 4px solid #e57373;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    z-index: 1;
+    transform: perspective(300px) rotateX(20deg);
+}
+
+.chair-surface {
+    position: absolute;
+    width: 100px;
+    height: 130px;
+    background: #ffb74d;
+    top: 10px;
+    left: 5px;
+    border-radius: 3px;
+    z-index: 2;
+    transform: perspective(300px) rotateX(20deg);
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 10px, #f57c00 10px, #f57c00 12px);
+}
+
+/* 人物样式优化 */
+.person {
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.body {
+    width: 60px;
+    height: 100px;
+    background: #ffcdb8;
+    border-radius: 25px 25px 30px 30px;
+    position: relative;
+    z-index: 2;
+    box-shadow: -3px 0px 5px rgba(0,0,0,0.1), 3px 0px 5px rgba(0,0,0,0.05);
+}
+
+.head {
+    width: 50px;
+    height: 50px;
+    background: #ffcdb8;
+    border-radius: 50%;
+    position: relative;
+    top: -25px;
+    left: 5px;
+    z-index: 3;
+    box-shadow: -2px 0px 4px rgba(0,0,0,0.1), 2px 0px 4px rgba(0,0,0,0.05);
+}
+
+/* 添加面部特征 */
+.head:after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    background: #ffcdb8;
+    border-radius: 0 0 30px 30px;
+    bottom: 10px;
+    left: 10px;
+}
+
+/* 头发样式 */
+.hair {
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 50px;
+    height: 25px;
+    background: #704214;
+    border-radius: 50% 50% 0 0;
+    z-index: 1;
+}
+
+/* 眼睛 */
+.eye {
+    position: absolute;
+    width: 8px;
+    height: 6px;
+    background: #333;
+    border-radius: 50%;
+    top: 20px;
+    z-index: 4;
+}
+
+.eye.left {
+    left: 15px;
+}
+
+.eye.right {
+    left: 32px;
+}
+
+/* 微笑的嘴 */
+.mouth {
+    position: absolute;
+    width: 20px;
+    height: 8px;
+    border-bottom: 2px solid #333;
+    border-radius: 50%;
+    bottom: 15px;
+    left: 15px;
+}
+
+/* 优化墨镜样式 */
+.sunglasses {
+    position: absolute;
+    top: 15px;
+    left: 5px;
+    z-index: 5;
+}
+
+.sunglasses-frame {
+    position: relative;
+    width: 40px;
+    height: 10px;
+    background: #333;
+    border-radius: 3px;
+}
+
+.sunglasses-lens {
+    position: absolute;
+    width: 16px;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 3px;
+    top: 3px;
+    border: 2px solid #222;
+}
+
+.sunglasses-lens.left {
+    left: 2px;
+}
+
+.sunglasses-lens.right {
+    right: 2px;
+}
+
+/* 优化手臂样式 */
+.arm {
+    position: absolute;
+    width: 12px;
+    height: 70px;
+    background: #ffcdb8;
+    z-index: 1;
+    border-radius: 6px;
+    transform-origin: top center;
+}
+
+.arm-left {
+    transform: rotate(30deg);
+    left: -5px;
+    top: 20px;
+}
+
+.arm-right {
+    transform: rotate(-20deg);
+    right: -5px;
+    top: 20px;
+}
+
+/* 优化腿部样式 */
+.leg {
+    position: absolute;
+    width: 15px;
+    height: 80px;
+    background: #ffcdb8;
+    bottom: -75px;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.leg-left {
+    left: 15px;
+}
+
+.leg-right {
+    right: 15px;
+}
+
+/* 泳衣样式 */
+.swimsuit {
+    position: absolute;
+    width: 50px;
+    height: 40px;
+    background: #ff5f7e;
+    top: 20px;
+    left: 5px;
+    border-radius: 10px;
+    z-index: 2;
+    /* 泳衣花纹 */
+    background-image: linear-gradient(45deg, #ff5f7e 25%, #ff81a6 25%, #ff81a6 50%, #ff5f7e 50%, #ff5f7e 75%, #ff81a6 75%);
+    background-size: 10px 10px;
+}
+
+/* 躺椅上的毛巾 */
+.towel {
+    position: absolute;
+    width: 100px;
+    height: 150px;
+    background: #5fcbff;
+    top: 5px;
+    left: 5px;
+    z-index: 1;
+    border-radius: 5px;
+    /* 毛巾条纹 */
+    background-image: repeating-linear-gradient(90deg, #5fcbff, #5fcbff 10px, #3da5ff 10px, #3da5ff 20px);
+}
+
+/* 沙滩小物件 */
+.beach-items {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    z-index: 4;
+}
+
+.umbrella {
+    position: absolute;
+    bottom: 60px;
+    left: 100px;
+}
+
+.umbrella:before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 80px;
+    background: #a0522d;
+    transform: rotate(10deg);
+    left: 40px;
+    z-index: 1;
+}
+
+.umbrella:after {
+    content: "";
+    position: absolute;
+    width: 90px;
+    height: 45px;
+    background: linear-gradient(#ff6b6b, #ff8e8e);
+    border-radius: 90px 90px 0 0;
+    left: 0;
+    z-index: 2;
+}
+
+.starfish {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #ff8a65;
+    border-radius: 50% 0 50% 0;
+    transform: rotate(45deg);
+    bottom: 5px;
+    left: 200px;
+}
+
+.shell {
+    position: absolute;
+    width: 20px;
+    height: 15px;
+    background: #ffdab9;
+    border-radius: 20px 20px 0 0;
+}
+
+.shell1 {
+    bottom: 5px;
+    left: 250px;
+}
+
+.shell2 {
+    bottom: 10px;
+    left: 500px;
+    transform: rotate(20deg);
+}
+
+.title {
+    font-size: 2rem;
+    color: #0077be;
+    margin-top: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+
+/* 动画 */
+@keyframes sun-glow {
+    0% {
+        box-shadow: 0 0 60px #ffeb3b, 0 0 120px rgba(255, 235, 59, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 80px #ffeb3b, 0 0 160px rgba(255, 235, 59, 0.6);
+    }
+}
+
+@keyframes float-cloud {
+    0% {
+        transform: translateX(-200px);
+    }
+    100% {
+        transform: translateX(1000px);
+    }
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(10px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
